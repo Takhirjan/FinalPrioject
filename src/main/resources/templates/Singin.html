@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html  xmlns:th = "http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="utf-8">
+	<title>Sign in/Sign up</title>
+	<link rel="stylesheet"  type="text/css" th:href="@{'/css/signIn.css'}" media="screen">
+	<link rel="stylesheet"
+		  th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+	<link rel="stylesheet" type="text/css" th:href = "@{'/css/bootstrap.min.css'}">
+
+</head>
+<body>
+<ul>
+
+	<li><h4>Stayhub.com</h4></li>
+	<li class="siteContent">
+		<img src="KZ.png" alt="Описание картинки"  onclick="showOptions()">
+		<div id="options" style="display: none; margin-left: 80%; background-color:ghostwhite;
+				padding: 20px;border-radius: 15px;">
+			<select id="param1" class="custom-select">
+				<option value="значение1">Русский</option>
+				<option value="значение2"> Казахский</option>
+				<option value="значение3">Английский</option>
+			</select>
+		</div>
+	</li>
+</ul>
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="" method="post">
+			<h1>Sign Up</h1>
+			<div class="social-container">
+				<a href="#" class="fa fa-facebook"></a>
+				<a href="#" class="fa fa-twitter"></a>
+			</div>
+			<input type="text" placeholder="Name" name="user_password"/>
+			<input type="email" placeholder="Email" name="user_password" />
+			<input type="password" placeholder="Password" name="password" />
+			<label class="checkbox-container">
+				<input type="checkbox">
+				<span class="checkmark"></span>Remember me</label>
+			<button>Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="main.php" method="post">
+			<h1 style="font-family: Tahoma; color: white;  -webkit-text-stroke: 1.7px black;color: #26264d;">Sign In</h1>
+			<hr>
+			<div class="social-container">
+				<a href="#" class="fa fa-facebook"></a>
+				<a href="#" class="fa fa-twitter"></a>
+				<a href="#" class="fa fa-instagram"></a>
+				<a href="#" class="fa fa-whatsapp"></a>
+			</div>
+			<input type="email" placeholder="Email" name="user_email"/>
+			<input type="password" placeholder="Password" name="user_password"/>
+			<a href="#"><p1>Forgot your password?</p1></a>
+			<button href style="background: #26264d;color: white; cursor: pointer;">Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+
+				<h1 style="color: white;">Welcome Back!</h1>
+				<p>To keep connected with us please login<br> with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1 style="color: white;">Please, write your information!</h1>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" th:src="@{'/js/sign.js'}"></script>
+<script>
+	function showOptions() {
+		var optionsDiv = document.getElementById("options");
+		if (optionsDiv.style.display === "block") {
+			optionsDiv.style.display = "none";
+			optionsDiv.style.position="absolute";
+		} else { // В противном случае, открыть панель
+			optionsDiv.style.display = "block";
+			optionsDiv.style.position="absolute"
+		}
+
+		var productItems = document.getElementsByClassName("product-item");
+
+		for (var i = 0; i < productItems.length; i++) {
+			var productItem = productItems[i];
+
+			// Добавляем обработчик события для каждого элемента товара
+			productItem.addEventListener("click", function() {
+				// Закрыть панель
+				optionsDiv.style.display = "none";
+
+				// Дополнительные действия при выборе товара...
+			});
+		}
+
+	}
+</script>
+</body>
+</html>
