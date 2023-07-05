@@ -7,15 +7,12 @@
 	<link rel="stylesheet"  type="text/css" th:href="@{'/css/signIn.css'}" media="screen">
 	<link rel="stylesheet"
 		  th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
-	<link rel="stylesheet" type="text/css" th:href = "@{'/css/bootstrap.min.css'}">
-
 </head>
 <body>
 <ul>
-
 	<li><h4>Stayhub.com</h4></li>
 	<li class="siteContent">
-		<img src="KZ.png" alt="Описание картинки"  onclick="showOptions()">
+		<img th:src="@{'/images/KZ.png'}" alt="Описание картинки"  onclick="showOptions()">
 		<div id="options" style="display: none; margin-left: 80%; background-color:ghostwhite;
 				padding: 20px;border-radius: 15px;">
 			<select id="param1" class="custom-select">
@@ -26,17 +23,28 @@
 		</div>
 	</li>
 </ul>
+<div class="alert alert-danger alert-white rounded" id="X" th:if = "${param.AuthError!=null}">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="Close()">×</button>
+	<div class="icon"><i class="fa fa-times-circle"></i></div>
+	<strong>Error!</strong> Incorrect email or password!
+</div>
+<div class="alert alert-success alert-white rounded" id="X" th:if="${param.emailerror!=null}">
+	<button type="button" class="close" data-dismiss="alert"  aria-hidden="true">×</button>
+	<div class="icon"><i class="fa fa-check"></i></div>
+	<strong>Success!</strong> Changes has been saved successfully!
+</div>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form action="" method="post">
+		<form method="post" th:action = "@{'/to-sign-up'}">
 			<h1>Sign Up</h1>
 			<div class="social-container">
 				<a href="#" class="fa fa-facebook"></a>
 				<a href="#" class="fa fa-twitter"></a>
 			</div>
-			<input type="text" placeholder="Name" name="user_password"/>
-			<input type="email" placeholder="Email" name="user_password" />
-			<input type="password" placeholder="Password" name="password" />
+			<input type="text" placeholder="Name" name="user_full_name"/>
+			<input type="email" placeholder="Email" name="user_email" />
+			<input type="password" placeholder="Password" name="user_password" />
+			<input type="password" placeholder="Repeat Password" name="user_repeat_password" />
 			<label class="checkbox-container">
 				<input type="checkbox">
 				<span class="checkmark"></span>Remember me</label>
@@ -44,8 +52,9 @@
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="main.php" method="post">
-			<h1 style="font-family: Tahoma; color: white;  -webkit-text-stroke: 1.7px black;color: #26264d;">Sign In</h1>
+		<form method="post" th:action = "@{'/to-enter'}">
+			<h1 style="font-family: Bahnschrift; color: white;
+			 -webkit-text-stroke: 1.7px black;color: #26264d;">Sign In</h1>
 			<hr>
 			<div class="social-container">
 				<a href="#" class="fa fa-facebook"></a>
@@ -101,6 +110,13 @@
 			});
 		}
 
+	}
+</script>
+<script>
+	let div = document.getElementById("X");
+	function Close(){
+		div.style.opacity = "0";
+		setTimeout(function(){ div.style.display = "none"; }, 50);
 	}
 </script>
 </body>
