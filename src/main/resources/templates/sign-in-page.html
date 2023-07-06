@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<title>Sign in/Sign up</title>
 	<link rel="stylesheet"  type="text/css" th:href="@{'/css/signIn.css'}" media="screen">
+	<script type="text/javascript" th:src="@{'/js/notification.js'}" media="screen"></script>
 	<link rel="stylesheet"
 		  th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
 </head>
@@ -23,15 +24,25 @@
 		</div>
 	</li>
 </ul>
-<div class="alert alert-danger alert-white rounded" id="X" th:if = "${param.AuthError!=null}">
-	<button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="Close()">×</button>
+<!-- HTML-код для отображения уведомлений -->
+<div id="notificationAuthError" class="alert alert-danger alert-white rounded" th:if="${param.AuthError!=null}">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true"
+			onclick="closeNotification('notificationAuthError')">&times;</button>
 	<div class="icon"><i class="fa fa-times-circle"></i></div>
 	<strong>Error!</strong> Incorrect email or password!
 </div>
-<div class="alert alert-success alert-white rounded" id="X" th:if="${param.emailerror!=null}">
-	<button type="button" class="close" data-dismiss="alert"  aria-hidden="true">×</button>
+
+<div id="notificationEmailError" class="alert alert-success alert-white rounded" th:if="${param.success!=null}">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true"
+			onclick="closeNotification('notificationEmailError')">&times;</button>
 	<div class="icon"><i class="fa fa-check"></i></div>
-	<strong>Success!</strong> Changes has been saved successfully!
+	<strong>Success!</strong> Changes have been saved successfully!
+</div>
+<div id="notificationPasswordError" class="alert alert-warning alert-white rounded" th:if="${param.passwordError!=null}">
+	<button type="button" onclick="closeNotification('notificationPasswordError')"
+			class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	<div class="icon"><i class="fa fa-warning"></i></div>
+	<strong>Alert!</strong> Password are not the same
 </div>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
@@ -112,12 +123,6 @@
 
 	}
 </script>
-<script>
-	let div = document.getElementById("X");
-	function Close(){
-		div.style.opacity = "0";
-		setTimeout(function(){ div.style.display = "none"; }, 50);
-	}
-</script>
+
 </body>
 </html>

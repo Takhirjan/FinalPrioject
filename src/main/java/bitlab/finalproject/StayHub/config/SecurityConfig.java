@@ -39,8 +39,9 @@ public class SecurityConfig {
         .loginProcessingUrl("/to-enter") // <form action = "/to-enter" method = "post">
         .usernameParameter("user_email") // <input type = "email" name = "user_email">
         .passwordParameter("user_password") // <input type = "password" name = "user_password">
-        .defaultSuccessUrl("/MainPage") // reponse.sendRedirect("/profile")
-        .failureUrl("/sign-in-page?AuthError");
+        .defaultSuccessUrl("/?") // reponse.sendRedirect("/profile")
+        .failureUrl("/sign-in-page?AuthError")
+        ;
 
     http.logout()
         .logoutUrl("/sign-out")

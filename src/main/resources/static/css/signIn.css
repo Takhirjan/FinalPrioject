@@ -335,7 +335,6 @@ img{
 .flag{
 	width: 25%;
 }
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
 .alert-danger {
 	background-color: #f2dede;
@@ -588,6 +587,28 @@ button.close {
 }
 
 .alert-white.alert-danger .icon,.alert-white.alert-danger .icon:after {
-	border-color: #ca452e;
-	background: #da4932;
+	border-color: #9c0000;
+	background: #f21f00;
+}
+.alert-warning {
+	background-color: #fcf8e3;
+	border-color: #f1daab;
+	color: #0d0303;
+}
+.alert-warning {
+	background-color: #fcf8e3;
+	border-color: #faebcc;
+	color: #8a6d3b;
+}
+
+.alert-warning hr {
+	border-top-color: #f7e1b5;
+}
+
+.alert-warning .alert-link {
+	color: #66512c;
+}
+.alert-white.alert-warning .icon,.alert-white.alert-warning .icon:after {
+	border-color: #d68000;
+	background: #fc9700;
 }

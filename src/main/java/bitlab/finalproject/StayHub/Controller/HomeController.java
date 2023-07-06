@@ -18,10 +18,11 @@ public class HomeController {
     return "sign-in-page";
   }
   @PreAuthorize("isAuthenticated()")
-  @GetMapping(value = "/MainPage")
+  @GetMapping(value = "/")
   public String MainPage(){
     return "MainPage";
   }
+
   @PostMapping(value = "/to-sign-up")
   public String toSignUp(@RequestParam(name = "user_email") String email,
                          @RequestParam(name = "user_password") String password,
@@ -39,7 +40,7 @@ public class HomeController {
         return "redirect:/sign-in-page?emailerror";
       }
     } else {
-      return "redirect:/sign-in-page?passworderror";
+      return "redirect:/sign-in-page?passwordError";
     }
   }
 }
