@@ -4,6 +4,9 @@ import bitlab.finalproject.StayHub.Model.Users;
 import bitlab.finalproject.StayHub.Repository.UserRepository;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -37,6 +40,25 @@ public class UserService implements UserDetailsService {
     return userRepository.save(users);
   }
   return null;
+  }
+  public Users updatePassword(String newPassword, String oldPassword) {
+    Users currentUser = getCurrentSessionUser();
+    if(passwordEncoder.matches(oldPassword, currentUser.getPassword())){
+      currentUser.setPassword(passwordEncoder.encode(newPassword));
+      return userRepository.save(currentUser);
+    }
+    return null;
+  }
+
+  public Users getCurrentSessionUser() {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (!(authentication instanceof AnonymousAuthenticationToken)) {
+      Users user = (Users) authentication.getPrincipal();
+      if (user != null) {
+        return user;
+      }
+    }
+    return null;
   }
 }
 

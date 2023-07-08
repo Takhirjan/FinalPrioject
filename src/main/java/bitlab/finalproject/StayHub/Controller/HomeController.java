@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController {
   @Autowired
-  UserService userService;
+ private UserService userService;
   @GetMapping(value = "/sign-in-page")
   public String mainPage(){
     return "sign-in-page";
   }
-  @PreAuthorize("isAuthenticated()")
+  //  @PreAuthorize("isAuthenticated()")
   @GetMapping(value = "/")
   public String MainPage(){
     return "MainPage";
@@ -42,5 +42,29 @@ public class HomeController {
     } else {
       return "redirect:/sign-in-page?passwordError";
     }
+  }
+
+  @PostMapping(value = "/to-update-password")
+  public String updatePassword(
+      @RequestParam(name = "user_old_password") String oldPassword,
+      @RequestParam(name = "user_new_password") String newPassword,
+      @RequestParam(name = "user_repeat_new_password") String repeatNewPassword) {
+
+    if (newPassword.equals(repeatNewPassword)) {
+      Users users = userService.updatePassword(newPassword, oldPassword);
+      if (users != null) {
+        return "redirect:/update-password-page?success";
+      } else {
+        return "redirect:/update-password-page?oldpassworderror";
+      }
+
+    } else {
+      return "redirect:/update-password-page?passwordmismatch";
+    }
+  }
+  @PreAuthorize("isAuthenticated()")
+  @GetMapping(value = "/update-password-page")
+  public String updatePage(){
+    return "update-password";
   }
 }
