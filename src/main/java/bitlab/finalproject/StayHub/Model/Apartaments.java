@@ -12,9 +12,6 @@ import lombok.Setter;
 @Setter
 @Table(name = "t_apartaments")
 public class Apartaments extends BaseModel{
-  @Lob
-  @Column(name = "image_data")
-  private String images;
 
   @Column(name = "title")
   private String title;

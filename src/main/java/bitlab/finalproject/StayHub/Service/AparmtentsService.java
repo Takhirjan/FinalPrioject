@@ -5,11 +5,14 @@ import bitlab.finalproject.StayHub.Repository.ApartmentsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AparmtentsService {
 private final ApartmentsRepository apartmentsRepository;
-public Apartaments getApartaments(Long id){
-  return apartmentsRepository.findById(id).orElse(null);
+public List<Apartaments> getApartaments(){
+return apartmentsRepository.findAll();
 }
+
 }

@@ -7,8 +7,23 @@
         <div class="text">
             <h1>Поиск по типу размещения</h1>
         </div>
+    </div>
 </div>
-</div>
-<div layout:fragment="content2">
 
+<div layout:fragment="content2">
+    <div class="container" style="display: flex;position: relative;justify-content: center;margin-left: 50px">
+    <a href="#" style="display: flex">
+        <div class="card" style="width: 15rem; height: 17rem;" th:each="apt : ${apartments}">
+            <input type="hidden" name="id" th:value="${apt.id}" >
+            <img th:src="@{'/images/57584488.jpeg'}"  class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title" style="color: #0d0303;font-size: 18px;"
+                    th:text="${apt.title}"></h5>
+                <p class="card-text" style="color: darkgray;font-size: 15px;width:20%"
+                   th:text="${apt.amount}"></p><p1 style="font-size: 15px;color: darkgray">Отелей</p1>
+            </div>
+        </div>
+    </a>
+</div>
+</div>
 </html>

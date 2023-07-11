@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @Controller
 public class HomeController {
   @Autowired
@@ -26,11 +28,10 @@ public class HomeController {
   public String mainPage(){
     return "sign-in-page";
   }
-  //  @PreAuthorize("isAuthenticated()")
+
   @GetMapping(value = "/")
-  public String MainPage(Long id, Model model){
-    List<Apartaments> apartamentsModel= (List<Apartaments>) aparmtentsService.getApartaments(id);
-    model.addAttribute("apartments",apartamentsModel);
+  public String MainPage( Model model){
+    model.addAttribute("apartments", aparmtentsService.getApartaments());
     return "MainPage";
   }
 
