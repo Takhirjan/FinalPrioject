@@ -5,6 +5,8 @@
 .text h1 {
     font-size: 22px;
     margin-top: 50px;
+    margin-left: 65px;
+    font-weight:bold ;
 }
 
 @media (max-width: 768px) {
@@ -14,8 +16,8 @@
 }
 .card{
     position: relative;
-    margin-top: 90px;
-    margin-left: 140px;
+    margin-top: 15px;
+
 }
 p1{
     position: absolute;

@@ -1,10 +1,13 @@
 package bitlab.finalproject.StayHub.Controller;
 
 import bitlab.finalproject.StayHub.Model.Apartaments;
+import bitlab.finalproject.StayHub.Model.Hotels;
 import bitlab.finalproject.StayHub.Model.Users;
 import bitlab.finalproject.StayHub.Repository.ApartmentsRepository;
+import bitlab.finalproject.StayHub.Repository.HotelRepository;
 import bitlab.finalproject.StayHub.Service.AparmtentsService;
 import bitlab.finalproject.StayHub.Service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -13,17 +16,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
-  @Autowired
- private UserService userService;
-  @Autowired
-  private AparmtentsService aparmtentsService;
+ private final UserService userService;
+  private final AparmtentsService aparmtentsService;
+  private final HotelRepository hotelRepository;
 
+
+@GetMapping(value = "/hotel/us")
+public String getHotelsPage(Model model){
+  List<Hotels> hotels=new
+}
   @GetMapping(value = "/sign-in-page")
   public String mainPage(){
     return "sign-in-page";
