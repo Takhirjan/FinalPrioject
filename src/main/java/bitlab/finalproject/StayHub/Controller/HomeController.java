@@ -1,38 +1,38 @@
 package bitlab.finalproject.StayHub.Controller;
 
-import bitlab.finalproject.StayHub.Model.Apartaments;
 import bitlab.finalproject.StayHub.Model.Hotels;
 import bitlab.finalproject.StayHub.Model.Users;
-import bitlab.finalproject.StayHub.Repository.ApartmentsRepository;
-import bitlab.finalproject.StayHub.Repository.HotelRepository;
+import bitlab.finalproject.StayHub.Model.Villa;
 import bitlab.finalproject.StayHub.Service.AparmtentsService;
+import bitlab.finalproject.StayHub.Service.HotelService;
 import bitlab.finalproject.StayHub.Service.UserService;
+import bitlab.finalproject.StayHub.Service.VillaService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
  private final UserService userService;
   private final AparmtentsService aparmtentsService;
-  private final HotelRepository hotelRepository;
+private final HotelService hotelService;
+private final VillaService villaService;
 
-
-@GetMapping(value = "/hotel/us")
-public String getHotelsPage(Model model){
-  List<Hotels> hotels=new
+@GetMapping(value = "/hotels/{hotelId}")
+public String getHotelsPage(@PathVariable(name = "hotelId")Long id, Model model){
+  Hotels hotels= hotelService.getHotelById(id);
+  Villa villa=villaService.getVillaById(id);
+  model.addAttribute("hotel", hotels);
+  return "hotels";
 }
+
   @GetMapping(value = "/sign-in-page")
   public String mainPage(){
     return "sign-in-page";
@@ -41,6 +41,10 @@ public String getHotelsPage(Model model){
   @GetMapping(value = "/")
   public String MainPage( Model model){
     model.addAttribute("apartments", aparmtentsService.getApartaments());
+    int hotelCount=hotelService.getHotelCount();
+    int villaCount=villaService.getVillaCount();
+    model.addAttribute("hotelCount",hotelCount);
+    model.addAttribute("villaCount",villaCount);
     return "MainPage";
   }
 

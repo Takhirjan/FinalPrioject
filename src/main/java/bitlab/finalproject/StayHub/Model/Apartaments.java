@@ -16,7 +16,8 @@ public class Apartaments extends BaseModel{
   @Column(name = "title")
   private String title;
 
-  @Column(name = "amount")
-  private Long amount;
+  @Lob
+  @Column(name = "images",nullable = false)
+  private byte[]data;
 
 }

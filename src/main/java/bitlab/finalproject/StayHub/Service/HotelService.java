@@ -10,12 +10,12 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class HotelService {
-private final HotelRepository hotelRepository;
-public List<Hotels> getAllHotels(){
-  return hotelRepository.findAll();
-}
-public int  getHotelCount(){
-  List<Hotels> hotels=hotelRepository.findAll();
-  return hotels.size();
-}
+  private final HotelRepository hotelRepository;
+  public Hotels getHotelById(Long id){
+    return hotelRepository.findById(id).orElse(null);
+  }
+  public int  getHotelCount(){
+    List<Hotels> hotels=hotelRepository.findAll();
+    return hotels.size();
+  }
 }

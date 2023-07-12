@@ -7,10 +7,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "t_hotels")
+@Table(name = "t_villa")
 @Getter
 @Setter
-public class Hotels extends BaseModel{
+public class Villa extends BaseModel{
   @Column(name = "name")
   private String name;
 
