@@ -7,8 +7,26 @@
 </head>
 <body>
 <div layout:fragment="hotels">
-
-
+    <div class="row justify-content-center">
+    <div class="product-card" th:each="ht : ${hotels}">
+        <div class="badge" th:text="${ht.rating}"></div>
+        <div class="product-tumb">
+            <img th:src="@{'/images/captainCook.jpg'}" alt="images">
+        </div>
+        <div class="product-details">
+            <span class="product-catagory" th:text="${ht.name}"></span>
+            <h4 th:text="${ht.city}"></h4>
+            <p th:text="${ht.text}"></p>
+            <div class="product-bottom-details">
+                <div class="product-price" th:text="${ht.price}">$<small></small></div>
+                <div class="product-links">
+                    <a href=""><i class="fa fa-heart"></i></a>
+                    <a href=""><i class="fa fa-shopping-cart"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 </body>
 </html>

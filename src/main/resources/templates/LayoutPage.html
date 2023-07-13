@@ -9,10 +9,13 @@
             <a href="">StayHub</a>
         </div>
         <ul class="links">
-            <li><a href="">Home</a></li>
+            <li><a th:href="@{'/'}">Home</a></li>
             <li><a href="">About</a></li>
             <li><a href="">Services</a></li>
             <li><a href="">Contacts</a></li>
+            <li sec:authorize="hasAnyRole('ROLE_ADMIN')">
+                <a th:href="@{'/admin-panel'}">Admin Panel</a>
+            </li>
         </ul>
         <a th:href="@{'/sign-in-page'}" class="action_btn" sec:authorize="isAnonymous()">Sign in</a>
         <div class="dropdown" sec:authorize="isAuthenticated()">
@@ -39,7 +42,7 @@
     </div>
     <div layout:fragment="content"></div>
         <div layout:fragment="content2"></div>
-
+    <div layout:fragment="hotels"></div>
 </body>
 </html>
 

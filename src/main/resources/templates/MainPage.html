@@ -15,9 +15,10 @@
             <div class="card" style="width: 15rem; height: 17rem; margin-left: 10px" th:each="apt : ${apartments}">
                 <a th:href="@{'/hotels/'+ ${apt.id}}" style="display: flex;flex-wrap: wrap">
                 <input type="hidden" name="id" th:value="${apt.id}" >
-                <img th:src="${apt.images}"  class="card-img-top" alt="...">
-                <div class="card-body">
+                    <img th:src="@{apt.image}" alt="Image" />
+                    <div class="card-body">
                     <h5 class="card-title" style="color: #0d0303;font-size: 18px;"
+
                         th:text="${apt.title}"></h5>
                     <p class="card-text" style="color: darkgray;font-size: 15px;width:20%"
                        th:text="${hotelCount}"></p><p1 style="font-size: 15px;color: darkgray">Отелей</p1>
@@ -25,7 +26,6 @@
                 </div>
                 </a>
             </div>
-
     </div>
 </div>
 </html>

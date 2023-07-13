@@ -1,8 +1,10 @@
 package bitlab.finalproject.StayHub.Controller;
 
+import bitlab.finalproject.StayHub.Model.Apartaments;
 import bitlab.finalproject.StayHub.Model.Hotels;
 import bitlab.finalproject.StayHub.Model.Users;
 import bitlab.finalproject.StayHub.Model.Villa;
+import bitlab.finalproject.StayHub.Repository.ApartmentsRepository;
 import bitlab.finalproject.StayHub.Service.AparmtentsService;
 import bitlab.finalproject.StayHub.Service.HotelService;
 import bitlab.finalproject.StayHub.Service.UserService;
@@ -16,6 +18,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Base64;
+import java.util.List;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -24,11 +29,14 @@ public class HomeController {
   private final AparmtentsService aparmtentsService;
 private final HotelService hotelService;
 private final VillaService villaService;
+  private final ApartmentsRepository apartmentsRepository;
 
-@GetMapping(value = "/hotels/{hotelId}")
+  @GetMapping(value = "/hotels/{hotelId}")
 public String getHotelsPage(@PathVariable(name = "hotelId")Long id, Model model){
   Hotels hotels= hotelService.getHotelById(id);
   Villa villa=villaService.getVillaById(id);
+    List<Hotels> hotelsList=hotelService.getHotels();
+    model.addAttribute("hotels",hotelsList);
   model.addAttribute("hotel", hotels);
   return "hotels";
 }
@@ -91,5 +99,9 @@ public String getHotelsPage(@PathVariable(name = "hotelId")Long id, Model model)
   @GetMapping(value = "/update-password-page")
   public String updatePage(){
     return "update-password";
+  }
+  @GetMapping(value = "/403-page")
+  public String accessDenied() {
+    return "access-denied-page-403";
   }
 }
