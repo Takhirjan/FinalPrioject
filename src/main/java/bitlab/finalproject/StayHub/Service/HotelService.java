@@ -17,6 +17,7 @@ public List<Hotels> getHotels(){
   public Hotels getHotelById(Long id){
     return hotelRepository.findById(id).orElse(null);
   }
+
   public int  getHotelCount(){
     List<Hotels> hotels=hotelRepository.findAll();
     return hotels.size();

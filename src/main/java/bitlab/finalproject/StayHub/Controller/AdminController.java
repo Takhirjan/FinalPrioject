@@ -33,8 +33,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminController {
   private final HotelService hotelService;
-  private final AparmtentsService aparmtentsService;
-  private final HotelRepository hotelRepository;
+
 
   @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
   @GetMapping(value = "/admin-panel")
@@ -49,7 +48,9 @@ public class AdminController {
 @GetMapping(value = "/details/{hotelId}")
   public String hotelsDetails(@PathVariable(name = "hotelId")Long id, Model model){
   Hotels hotels=hotelService.getHotelById(id);
-  model.addAttribute("hotels", hotels);
+  model.addAttribute("otel", hotels);
+  List<Hotels> hotelsList=hotelService.getHotels();
+  model.addAttribute("hotel",hotelsList);
   return "details";
 }
 }

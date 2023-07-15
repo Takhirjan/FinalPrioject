@@ -13,6 +13,9 @@
             <li><a href="">About</a></li>
             <li><a href="">Services</a></li>
             <li><a href="">Contacts</a></li>
+            <li>
+                <a th:href="@{'/admin-panel'}" class="fw-bold text-decoration-underline" >EDIT</a>
+            </li>
             <li sec:authorize="hasAnyRole('ROLE_ADMIN')">
                 <a th:href="@{'/admin-panel'}">Admin Panel</a>
             </li>
@@ -43,6 +46,10 @@
     <div layout:fragment="content"></div>
         <div layout:fragment="content2"></div>
     <div layout:fragment="hotels"></div>
+
+    <div class="container-fluid w-75">
+    <div layout:fragment="details"></div>
+    </div>
 </body>
 </html>
 
