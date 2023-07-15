@@ -5,6 +5,7 @@ import bitlab.finalproject.StayHub.Model.Hotels;
 import bitlab.finalproject.StayHub.Model.Users;
 import bitlab.finalproject.StayHub.Model.Villa;
 import bitlab.finalproject.StayHub.Repository.ApartmentsRepository;
+import bitlab.finalproject.StayHub.Repository.HotelRepository;
 import bitlab.finalproject.StayHub.Service.AparmtentsService;
 import bitlab.finalproject.StayHub.Service.HotelService;
 import bitlab.finalproject.StayHub.Service.UserService;
@@ -25,21 +26,22 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
- private final UserService userService;
+  private final UserService userService;
   private final AparmtentsService aparmtentsService;
-private final HotelService hotelService;
-private final VillaService villaService;
+  private final HotelService hotelService;
+  private final VillaService villaService;
   private final ApartmentsRepository apartmentsRepository;
+  private final HotelRepository hotelRepository;
 
   @GetMapping(value = "/hotels/{hotelId}")
-public String getHotelsPage(@PathVariable(name = "hotelId")Long id, Model model){
-  Hotels hotels= hotelService.getHotelById(id);
-  Villa villa=villaService.getVillaById(id);
-    List<Hotels> hotelsList=hotelService.getHotels();
+  public String getHotelsPage(@PathVariable(name = "hotelId")Long id, Model model){
+    Hotels hotels= hotelService.getHotelById(id);
+    model.addAttribute("hotel", hotels);
+    Villa villa=villaService.getVillaById(id);
+    List<Hotels> hotelsList=hotelRepository.findAll();
     model.addAttribute("hotels",hotelsList);
-  model.addAttribute("hotel", hotels);
-  return "hotels";
-}
+    return "hotels";
+  }
 
   @GetMapping(value = "/sign-in-page")
   public String mainPage(){
@@ -48,11 +50,15 @@ public String getHotelsPage(@PathVariable(name = "hotelId")Long id, Model model)
 
   @GetMapping(value = "/")
   public String MainPage( Model model){
-    model.addAttribute("apartments", aparmtentsService.getApartaments());
+    List<Apartaments> apartaments=apartmentsRepository.findAll();
+    model.addAttribute("apartments",apartaments);
+
     int hotelCount=hotelService.getHotelCount();
     int villaCount=villaService.getVillaCount();
     model.addAttribute("hotelCount",hotelCount);
     model.addAttribute("villaCount",villaCount);
+
+
     return "MainPage";
   }
 

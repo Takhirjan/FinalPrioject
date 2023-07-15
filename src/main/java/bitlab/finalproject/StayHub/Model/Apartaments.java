@@ -7,6 +7,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Entity
 @Getter
 @Setter
@@ -16,6 +17,7 @@ public class Apartaments extends BaseModel{
   @Column(name = "title")
   private String title;
 
+
   @Column(name = "image")
-  private String image;
+  private  String image;
 }

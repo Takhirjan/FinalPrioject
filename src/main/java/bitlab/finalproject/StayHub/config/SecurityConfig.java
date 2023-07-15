@@ -17,7 +17,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class SecurityConfig  {
 
-
   @Bean
   public UserService securityUserService() {
     return new UserService();
@@ -45,7 +44,9 @@ public class SecurityConfig  {
         .logoutUrl("/sign-out")
         .logoutSuccessUrl("/sign-in-page");
 
+
     http.csrf().disable();
+
 
     return http.build();
   }
