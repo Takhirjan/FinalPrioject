@@ -1,10 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="LayoutPage.html">
 <body>
+<div layout:fragment="details">
+    <div class="row mt-5">
+        <div class="col-9 mx-auto">
+            <div class="row">
+                <div class="col-8 mx-auto">
+                    <form action="/edit-hotel-data" method="post" th:if="${otel!=null}">
+                        <input type="hidden" name="id" th:value="${otel.id}">
+                        <div class="row">
+                            <div class="col-12">
+                                <label>
+                                    NAME:
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row mt-2" >
+                            <div class="col-12">
+                                <input type="text" class="form-control" name="name" placeholder="Name" readonly
+                                       th:value="${otel.name}"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label>
+                                    Description
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row mt-2" >
+                            <div class="col-12">
+                                <textarea rows="5" type="text" class="form-control" name="description" placeholder="Description"
+                                       th:value="${otel.description}"
+                                          required></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label>
+                                    Price:
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row mt-2" >
+                            <div class="col-12">
+                                <input type="number" class="form-control" name="price" placeholder="Total"
+                                       th:value="${otel.price}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label>
+                                    Text
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row mt-2" >
+                            <div class="col-12">
+                                <input type="text" class="form-control" name="text" placeholder="Description" readonly
+                                       th:value="${otel.text}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label>
+                                    City
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row mt-2" >
+                            <div class="col-12">
+                                <input type="text" class="form-control" name="city" placeholder="City" readonly
+                                       th:value="${otel.city}"
+                                       >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label>
+                                    Address
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row mt-2" >
+                            <div class="col-12">
+                                <input type="text" class="form-control" name="address" placeholder="Description" readonly
+                                       th:value="${otel.address}">
+                            </div>
+                        </div>
+                        <div class="row mt-3" >
+                            <div class="col-12">
+                                <button class="btn btn-success">Save </button>
+                            </div>
+                        </div>
+                    </form>
 
+                </div>
+            </div>
+            <div th:if="${otel==null}" class="text-center">
+                <img th:src="@{'/images/pagenotfound.png'}" style="width: 75%;">
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

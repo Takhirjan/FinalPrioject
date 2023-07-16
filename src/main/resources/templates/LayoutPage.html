@@ -13,7 +13,7 @@
             <li><a href="">About</a></li>
             <li><a href="">Services</a></li>
             <li><a href="">Contacts</a></li>
-            <li>
+            <li sec:authorize="hasAnyRole('ROLE_ADMIN')">
                 <a th:href="@{'/admin-panel'}" class="fw-bold text-decoration-underline" >Add</a>
             </li>
             <li sec:authorize="hasAnyRole('ROLE_ADMIN')">

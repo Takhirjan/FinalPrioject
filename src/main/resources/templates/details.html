@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="LayoutPage.html">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="LayoutPage.html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <div th:insert="~{head.html}"> </div>
 
 <body>
@@ -93,9 +94,9 @@
             <span th:text="${otel.description}"></span>
             <br>
             <button type="button" class="btn btn-danger ms-2 mt-3"
-                    data-bs-toggle="modal" data-bs-target="#exampleModal">DELETE HOTEL</button>
+                    data-bs-toggle="modal" data-bs-target="#exampleModal" sec:authorize="hasAnyRole('ROLE_ADMIN')" >DELETE HOTEL</button>
             <br>
-            <a th:href="@{'/editHotel'}">
+            <a th:href="@{'/editHotel/'+${otel.id}}"  sec:authorize="hasAnyRole('ROLE_ADMIN')">
                 <button type="button" class="btn btn-warning ms-2 mt-3"
                                                  data-bs-toggle="modal">Edit information</button></a>
 

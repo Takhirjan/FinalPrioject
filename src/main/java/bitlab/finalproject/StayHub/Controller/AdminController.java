@@ -21,6 +21,7 @@ public class AdminController {
   public String adminPanel(Model model){
     return "admin";
   }
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
   @PostMapping(value = "/add-hotel")
   public String addHotel( Hotels hotels) {
     hotelService.addHotel(hotels);
@@ -36,23 +37,29 @@ public class AdminController {
 
     return "details";
   }
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
   @PostMapping(value = "/delete-hotel")
   public String deleteHotel(@RequestParam(name = "id") Long id){
     hotelService.deleteHotel(id);
     return "redirect:/hotels/"+id;
   }
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
   @PostMapping(value = "/edit-hotel-data")
   public String saveHotel(Hotels hotels) {
     hotelService.saveHotel(hotels);
-    return "redirect:/details";
+    return "redirect:/details/" + hotels.getId();
   }
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
   @GetMapping(value = "/edit-hotel-data")
   public String editHotelPage(Model model){
     model.addAttribute("otel",hotelService.getHotels());
     return "redirect:/details";
   }
-  @GetMapping(value = "/editHotel")
-  public String EditPage(){
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+  @GetMapping(value = "/editHotel/{id}")
+  public String EditPage(@PathVariable(name = "id")Long id,Model model){
+    Hotels hotels=hotelService.getHotelById(id);
+    model.addAttribute("otel",hotels);
     return "EditPage";
   }
 }
