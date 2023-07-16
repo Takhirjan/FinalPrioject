@@ -25,4 +25,11 @@ public List<Hotels> getHotels(){
   public Hotels addHotel(Hotels newHotel){
     return hotelRepository.save(newHotel);
   }
+
+  public void deleteHotel(Long id){
+  hotelRepository.deleteById(id);
+  }
+  public  Hotels saveHotel(Hotels hotels){
+    return hotelRepository.save(hotels);
+  }
 }

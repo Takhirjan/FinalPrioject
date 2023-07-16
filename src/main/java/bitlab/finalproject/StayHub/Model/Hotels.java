@@ -23,7 +23,7 @@ public class Hotels extends BaseModel{
   @Column(name = "rating")
   private String rating;
 
-  @Column(name = "text",columnDefinition = "TEXT")
+  @Column(name = "text",columnDefinition = "TEXT",length = 500)
   private String text;
 
   @Column(name = "city")
@@ -31,5 +31,8 @@ public class Hotels extends BaseModel{
 
   @Column(name = "image")
   private String image;
+
+  @Column(name = "address")
+  private String address;
 }
 

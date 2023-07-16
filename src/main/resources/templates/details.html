@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="LayoutPage.html">
 <div th:insert="~{head.html}"> </div>
+
 <body>
 <style>
     .form{
@@ -75,36 +76,78 @@
                 <li class="list-group-item bg-warning">
                     <button class="btn btn-primary w-100" type="submit">Поиск</button></li>
             </ul>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d61475.217487082184!2d-149.86690055!3d61.21653514999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sus!4v1689478754927!5m2!1sru!2sus"
+                    width="250" height="200" style="border:0; margin-top: 10px;border-radius: 5px" allowfullscreen=""
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
         </div>
         <div class="col">
             <input type="hidden" name="id" th:value="${otel.id}">
             <h1 style="font-size:22px;font-weight: bold;margin-top: 17px" th:text="${otel.name}"></h1>
-            <div id="location-icon" onclick="openMap()" style="display: flex;cursor: pointer">
+            <div id="location-icon"  style="display: flex;cursor: pointer">
                 <img src="/images/location.png" alt="Местоположение" style=" width: 30px;margin-bottom: 28px;position:
                  relative;
                 margin-top: 6%;">
                 <p style="margin-top: 20px;margin-left: 10px;">111 west 54Ave</p>
             </div>
+            <span th:text="${otel.description}"></span>
+            <br>
+            <button type="button" class="btn btn-danger ms-2 mt-3"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal">DELETE HOTEL</button>
+            <br>
+            <a th:href="@{'/editHotel'}">
+                <button type="button" class="btn btn-warning ms-2 mt-3"
+                                                 data-bs-toggle="modal">Edit information</button></a>
+
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true" th:if="${otel!=null}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form th:action="@{'/delete-hotel'}" method="post">
+                            <input type="hidden" name="id" th:value="${otel.id}">
+                            <div class="modal-header bg-info">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: white;
+">Confirm delete</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h3 class="text-center">Are you sure?</h3>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                <button  class="btn btn-danger">Yes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col mt-4">
+            <p2 th:text="${otel.text}"></p2>
             <p>
-                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                <button class="btn btn-primary mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     Выбирете услугу
                 </button>
             </p>
             <div class="collapse" id="collapseExample">
                 <div class="card card-body">
-                    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                    <ul class="list-group list-group-numbered">
+                        <li class="list-group-item">An item</li>
+                        <li class="list-group-item">A second item</li>
+                        <li class="list-group-item">A third item</li>
+                        <li class="list-group-item">A fourth item</li>
+                        <li class="list-group-item">And a fifth one</li>
+                    </ul>
                 </div>
             </div>
         </div>
         <div style="display: flex;flex-direction: column;float: right;width: 25%;">
-        <img th:src="@{'/images/2.jpg'}" class="img-thumbnail" alt="..."style="width: 100%;height: 70%;margin-top: 15px">
-        <img th:src="@{'/images/2.jpg'}" class="img-thumbnail" alt="..."style="width: 100%;height: 70%;margin-top: 15px">
-        <img th:src="@{'/images/2.jpg'}" class="img-thumbnail" alt="..."style="width: 100%;height: 70%;margin-top: 15px">
-    </div>
+            <img th:src="@{'/images/2.jpg'}" class="img-thumbnail" alt="..."style="width: 100%;height: 70%;margin-top: 15px">
+            <img th:src="@{'/images/2.jpg'}" class="img-thumbnail" alt="..."style="width: 100%;height: 70%;margin-top: 15px">
+            <img th:src="@{'/images/2.jpg'}" class="img-thumbnail" alt="..."style="width: 100%;height: 70%;margin-top: 15px">
+        </div>
     </div>
 </div>
 </body>
-
 </html>

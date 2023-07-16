@@ -14,7 +14,7 @@
             <li><a href="">Services</a></li>
             <li><a href="">Contacts</a></li>
             <li>
-                <a th:href="@{'/admin-panel'}" class="fw-bold text-decoration-underline" >EDIT</a>
+                <a th:href="@{'/admin-panel'}" class="fw-bold text-decoration-underline" >Add</a>
             </li>
             <li sec:authorize="hasAnyRole('ROLE_ADMIN')">
                 <a th:href="@{'/admin-panel'}">Admin Panel</a>
