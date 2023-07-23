@@ -23,8 +23,4 @@ public class AparmtentsService {
   public Apartaments getApartamentsById(Long id) {
     return apartmentsRepository.findById(id).orElse(null);
   }
-
-public  Apartaments addApartament(Apartaments image){
-    return apartmentsRepository.save(image);
-}
 }

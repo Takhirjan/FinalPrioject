@@ -2,6 +2,7 @@ package bitlab.finalproject.StayHub.Model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,5 +35,8 @@ public class Hotels extends BaseModel{
 
   @Column(name = "address")
   private String address;
+
+  @ManyToOne
+  private Service Service;
 }
 

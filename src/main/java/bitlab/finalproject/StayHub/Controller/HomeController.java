@@ -1,11 +1,8 @@
 package bitlab.finalproject.StayHub.Controller;
-
-import bitlab.finalproject.StayHub.Model.Apartaments;
-import bitlab.finalproject.StayHub.Model.Hotels;
-import bitlab.finalproject.StayHub.Model.Users;
-import bitlab.finalproject.StayHub.Model.Villa;
+import bitlab.finalproject.StayHub.Model.*;
 import bitlab.finalproject.StayHub.Repository.ApartmentsRepository;
 import bitlab.finalproject.StayHub.Repository.HotelRepository;
+import bitlab.finalproject.StayHub.Repository.ServiceRepository;
 import bitlab.finalproject.StayHub.Service.AparmtentsService;
 import bitlab.finalproject.StayHub.Service.HotelService;
 import bitlab.finalproject.StayHub.Service.UserService;
@@ -18,8 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Base64;
 import java.util.List;
 
 
@@ -27,7 +22,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HomeController {
   private final UserService userService;
-  private final AparmtentsService aparmtentsService;
   private final HotelService hotelService;
   private final VillaService villaService;
   private final ApartmentsRepository apartmentsRepository;
@@ -110,4 +104,8 @@ public class HomeController {
   public String accessDenied() {
     return "access-denied-page-403";
   }
+
+
+
+
 }
