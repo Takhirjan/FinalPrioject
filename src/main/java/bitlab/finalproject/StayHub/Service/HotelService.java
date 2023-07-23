@@ -1,6 +1,8 @@
 package bitlab.finalproject.StayHub.Service;
 
+import bitlab.finalproject.StayHub.Model.Booking;
 import bitlab.finalproject.StayHub.Model.Hotels;
+import bitlab.finalproject.StayHub.Repository.BookingRepository;
 import bitlab.finalproject.StayHub.Repository.HotelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,11 +13,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HotelService {
   private final HotelRepository hotelRepository;
-public List<Hotels> getHotels(){
+  private final BookingRepository bookingRepository;
+
+  public List<Hotels> getHotels(){
   return hotelRepository.findAll();
 }
   public Hotels getHotelById(Long id){
     return hotelRepository.findById(id).orElse(null);
+  }
+
+  public Booking getBookingById(Long id){
+  return bookingRepository.findById(id).orElse(null);
   }
 
   public int  getHotelCount(){
