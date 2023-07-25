@@ -10,7 +10,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ServicyService {
   private final ServiceRepository serviceRepository;
-  public List<bitlab.finalproject.StayHub.Model.Service> getAllService() {
-    return serviceRepository.findAll();
-  }
+
+public bitlab.finalproject.StayHub.Model.Service getServiceById(Long id){
+  return serviceRepository.findById(id).orElse(null);
+}
 }

@@ -139,7 +139,7 @@
                         </select>
                         <input style="border: none; padding: 5px; font-size: 11px; width: 100%; color: grey; border-radius: 5px;"
                                type="datetime-local" name="dateTime">
-                            <a th:href="@{'/booking/'}" class="btn-sm btn-success">Забронировать</a>
+                            <a th:href="@{'/booking/'+${otel.id}}" class="btn-sm btn-success">Забронировать</a>
                     </div>
                 </div>
         </div>
