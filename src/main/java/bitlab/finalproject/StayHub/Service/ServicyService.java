@@ -11,7 +11,7 @@ import java.util.List;
 public class ServicyService {
   private final ServiceRepository serviceRepository;
 
-public bitlab.finalproject.StayHub.Model.Service getServiceById(Long id){
-  return serviceRepository.findById(id).orElse(null);
-}
+public List<bitlab.finalproject.StayHub.Model.Service> getService(){
+return serviceRepository.findAll();
+  }
 }

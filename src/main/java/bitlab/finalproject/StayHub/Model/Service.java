@@ -18,7 +18,5 @@ public class Service extends BaseModel{
   @Column(name = "HasOptions")
   boolean hasOptions;
 
-  @ManyToMany(fetch = FetchType.EAGER)
- private List<Booking> bookings;
 }
 

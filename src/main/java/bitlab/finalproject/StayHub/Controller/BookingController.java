@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
@@ -28,21 +29,30 @@ public class BookingController {
   private final UserService userService;
   private final BookingRepository bookingRepository;
 
-  @GetMapping(value = "/booking/{bookingId}")
-  public String createBookingPage(@PathVariable(name="bookingId")Long id,Model model){;
-    Hotels hotels=hotelService.getHotelById(id);
-    model.addAttribute("booking",hotels);
+//  @GetMapping(value = "/booking/{bookingId}")
+//  public String createBookingPage(@PathVariable(name="bookingId")Long id,Model model){;
+//    Hotels hotels=hotelService.getHotelById(id);
+//    model.addAttribute("booking",hotels);
+//
+//    Service service = servicyService.getServiceById(id);
+//
+//    Booking booking = new Booking();
+//    booking.setHotels(hotels);
+//    booking.setService(service);
+//    bookingRepository.save(booking);
+//
+//    List<Booking>bookings=bookingService.getBookings();
+//    model.addAttribute("bookingModel",bookings);
+//    return "ConfirmationPage";
+//  }
+  @PostMapping(value = "/confirm")
+  public String confirmBooking(Booking booking,Model model,Long id){
+    bookingService.save(booking);
+    model.addAttribute("booking",booking);
 
-    Service service = servicyService.getServiceById(id);
 
-    Booking booking = new Booking();
-    booking.setHotels(hotels);
-    booking.setService(service);
-    bookingRepository.save(booking);
-
-    List<Booking>bookings=bookingService.getBookings();
-    model.addAttribute("bookingModel",bookings);
-
+  List<Service> services=servicyService.getService();
+  model.addAttribute("service",services);
 
     return "ConfirmationPage";
   }

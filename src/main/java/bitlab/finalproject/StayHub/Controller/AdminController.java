@@ -68,4 +68,6 @@ public class AdminController {
     model.addAttribute("otel",hotels);
     return "EditPage";
   }
+
+
 }
