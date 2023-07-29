@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Entity
 @Table(name = "t_hotels")
 @Getter
@@ -36,8 +34,7 @@ public class Hotels extends BaseModel{
   private String address;
 
   @ManyToOne
-  private Service Service;
-
+  private Uslugi Service;
 
 }
 

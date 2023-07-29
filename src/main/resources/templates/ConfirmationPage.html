@@ -81,36 +81,32 @@
         <main>
 
             <div class="row g-5"  th:if="${booking != null}">
+                <input type="hidden" name="id" th:value="${confirmHotel.id}">
                 <div class="col-md-5 col-lg-4 order-md-last">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-primary">Your order</span>
                     </h4>
-                    <ul class="list-group mb-3" th:each="service:${service}">
-                        <input type="hidden" name="booking_id" th:value="${booking.id}">
+                    <ul class="list-group mb-3">
                         <li class="list-group-item d-flex justify-content-between lh-sm">
                             <div>
-                                <h6 class="my-0" th:text="${service.serviceName}"
-                                    th:selected="${service.id == booking.service.id}"></option>                                    ></h6>
+                                <h6 class="my-0" th:text="${confirmHotel.name}"></h6>
                             </div>
                         </li>
                         <li class="list-group-item d-flex justify-content-between lh-sm">
                             <div>
                                 <h6 class="my-0">Address</h6>
-                                <small class="text-body-secondary"></small>
-                                <small class="text-body-secondary" th:text="${booking.dateTime}"></small>
+                                <small class="text-body-secondary" th:text="${confirmHotel.address}"></small>
                             </div>
                         </li>
                         <li class="list-group-item d-flex justify-content-between lh-sm">
-<!--                            <div th:each="bk:${bookingModel}">-->
-<!--                                <h6 class="my-0" th:text="${bk.dateTime}"></h6>-->
-<!--                                <small class="text-body-secondary">Brief description</small>-->
-<!--                            </div>-->
-<!--                            <span class="text-body-secondary" th:text="${booking.}"></span>-->
+                            <h6 class="my-0">Service</h6>
+                            <br>
+                            <small class="text-body-secondary" th:text="${service.serviceName}"></small>
                         </li>
                         <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                             <div class="text-success">
-                                <h6 class="my-0">Promo code</h6>
-                                <small>EXAMPLECODE</small>
+                                <h6 class="my-0">Check in Time</h6>
+                                <small  th:text="${book.dateTime}"></small>
                             </div>
                             <span class="text-success">−$5</span>
                         </li>

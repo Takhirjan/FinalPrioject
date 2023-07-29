@@ -1,6 +1,6 @@
 package bitlab.finalproject.StayHub.Controller;
 import bitlab.finalproject.StayHub.Model.Hotels;
-import bitlab.finalproject.StayHub.Model.Service;
+import bitlab.finalproject.StayHub.Model.Uslugi;
 import bitlab.finalproject.StayHub.Repository.ServiceRepository;
 import bitlab.finalproject.StayHub.Service.HotelService;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +38,7 @@ public class AdminController {
     List<Hotels> hotelsList=hotelService.getHotels();
     model.addAttribute("hotel",hotelsList);
 
-    List<Service> services=serviceRepository.findAll();
+    List<Uslugi> services=serviceRepository.findAll();
     model.addAttribute("service",services);
 
     return "details";

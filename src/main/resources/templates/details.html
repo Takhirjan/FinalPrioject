@@ -131,7 +131,7 @@
                         Выбирете услугу
                     </button>
                 </p>
-            <form th:action="@{'/confirm'}" method="post">
+                <form th:action="@{'/confirm'}" method="get">
                 <div class="collapse" id="collapseExample">
                     <div class="card card-body">
                         <select class="form-select" name="service.id">
@@ -142,12 +142,12 @@
 
                         <input style="border: none; padding: 5px; font-size: 11px; width: 100%; color: grey; border-radius: 5px;"
                                type="datetime-local" name="dateTime">
-<!--                            <a th:href="@{'/booking/'+${otel.id}}" class="btn-sm btn-success">Забронировать</a>-->
-                        <button type="submit" class="btn-sm btn-success">Забронировать</button>
+                          <!--  <a th:href="@{'/confirm/'+${otel.id}}" class="btn-sm btn-success">Забронировать</a>-->
+                       <button type="submit" class="btn-sm btn-success">Забронировать</button>
 
                     </div>
                 </div>
-            </form>
+           </form>
         </div>
         <div style="display: flex;flex-direction: column;float: right;width: 25%;">
             <img th:src="@{'/images/2.jpg'}" class="img-thumbnail" alt="..."style="width: 100%;height: 70%;margin-top: 15px">

@@ -19,7 +19,5 @@ public class Booking extends BaseModel{
   @ManyToOne
   private Users user;
 
-  @ManyToOne
-  private Service service;
 
 }

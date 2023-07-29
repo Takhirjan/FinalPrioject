@@ -20,6 +20,8 @@ public class HotelService {
   public List<Hotels> getHotels(){
   return hotelRepository.findAll();
 }
+
+
   public Hotels getHotelById(Long id){
     return hotelRepository.findById(id).orElse(null);
   }
