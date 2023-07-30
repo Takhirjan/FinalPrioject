@@ -18,6 +18,4 @@ public class Booking extends BaseModel{
 
   @ManyToOne
   private Users user;
-
-
 }

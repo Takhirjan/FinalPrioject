@@ -101,17 +101,19 @@
                         <li class="list-group-item d-flex justify-content-between lh-sm">
                             <h6 class="my-0">Service</h6>
                             <br>
+                            <br>
                             <small class="text-body-secondary" th:text="${service.serviceName}"></small>
+                            <span class="text-success">FREE</span>
+
                         </li>
                         <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                             <div class="text-success">
                                 <h6 class="my-0">Check in Time</h6>
-                                <small  th:text="${book.dateTime}"></small>
+                                <small th:text="${booking.dateTime}"></small>
                             </div>
-                            <span class="text-success">−$5</span>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span>Total (USD)</span>
+                        <li class="list-group-item d-flex justify-content-between" name="user.id">
+                            <span th:each="user:${users}" th:text="${user.fullName}"></span>
                             <strong>$20</strong>
                         </li>
                     </ul>
