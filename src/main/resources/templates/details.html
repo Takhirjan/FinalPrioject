@@ -134,7 +134,7 @@
             <form th:action="@{'/confirm/'+${otel.id}}" method="post">
                 <div class="collapse" id="collapseExample">
                     <div class="card card-body">
-                        <select class="form-select" name="service.id">
+                        <select class="form-select" name="uslugiModel.id">
                             <option  th:each="service:${service}"
                                      th:value="${service.id}"
                                      th:text="${service.serviceName}"></option>
@@ -142,7 +142,6 @@
 
                         <input style="border: none; padding: 5px; font-size: 11px; width: 100%; color: grey; border-radius: 5px;"
                                type="datetime-local" name="dateTime">
-                        <!--  <a th:href="@{'/confirm/'+${otel.id}}" class="btn-sm btn-success">Забронировать</a>-->
                         <button type="submit" class="btn-sm btn-success">Забронировать</button>
 
                     </div>
