@@ -28,13 +28,11 @@ public class BookingController {
     bookingService.save(booking);
     model.addAttribute("booking",booking);
 
-//    Uslugi services=servicyService.getServiceById(id);
-//   model.addAttribute("service",services);
     List<Uslugi> uslugi= uslugiService.getService();
     model.addAttribute("uslugi",uslugi);
 
-    Booking bookings = bookingService.getBooking(id);
-    model.addAttribute("book", bookings);
+    List<Booking> bookingList=bookingService.getBook();
+    model.addAttribute("book", bookingList);
 
    Hotels hotels=hotelService.getHotelById(id);
    model.addAttribute("confirmHotel",hotels);

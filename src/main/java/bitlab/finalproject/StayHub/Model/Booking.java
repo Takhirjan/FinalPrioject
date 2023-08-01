@@ -15,4 +15,7 @@ public class Booking extends BaseModel{
 
   @Column(name = "time")
   private LocalDateTime dateTime;
+
+  @ManyToOne
+  private Uslugi uslugiModel;
 }

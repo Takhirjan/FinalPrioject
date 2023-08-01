@@ -43,15 +43,13 @@
                                 <small class="text-body-secondary" th:text="${confirmHotel.address}"></small>
                             </div>
                         </li>
-                        <li class="list-group-item lh-sm" name="uslugiModel.id">
+                        <li class="list-group-item lh-sm">
                             <h6 class="my-0">Service</h6>
-<!--                            <small class="text-body-secondary" th:text="${service.serviceName}"></small>-->
-                            <small class="text-body-secondary"
-                                   th:each="uslugi:${uslugi}"
-                                   th:value="${uslugi.id}"
-                                   th:text="${uslugi.serviceName}"
-                                   th:selected="${confirmHotel.uslugiModel.id==uslugi.id}"></small>
-
+                            <small class="text-body-secondary" th:each="bk:${book}"
+                                   th:value="${bk.id}"
+                                   th:text="${bk.uslugiModel.serviceName}"
+                                   ></small>
+                            ></small>
                             <span class="text-success">FREE</span>
 
                         </li>

@@ -33,10 +33,9 @@ public class Hotels extends BaseModel{
   @Column(name = "address")
   private String address;
 
+
   @ManyToOne
   private Uslugi uslugiModel;
 
-  @ManyToOne
-  private Booking booking;
 }
 

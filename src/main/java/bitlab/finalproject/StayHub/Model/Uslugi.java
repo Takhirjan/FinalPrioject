@@ -11,13 +11,11 @@ import lombok.Setter;
 @Setter
 public class Uslugi extends BaseModel{
   @Column(name = "service_name")
-  private String ServiceName;
+  private String serviceName;
 
   @Column(name = "HasOptions")
   boolean hasOptions;
 
-  @ManyToOne
-  private Booking booking;
 
 }
 
