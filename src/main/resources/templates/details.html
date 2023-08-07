@@ -93,23 +93,24 @@
             </div>
             <span th:text="${otel.description}"></span>
             <br>
-            <button type="button" class="btn btn-danger ms-2 mt-3"
+
+<br>
+    <br>
+    <button type="button" class="btn btn-danger ms-2 mt-3"
                     data-bs-toggle="modal" data-bs-target="#exampleModal" sec:authorize="hasAnyRole('ROLE_ADMIN')" >DELETE HOTEL</button>
             <br>
             <a th:href="@{'/editHotel/'+${otel.id}}"  sec:authorize="hasAnyRole('ROLE_ADMIN')">
                 <button type="button" class="btn btn-warning ms-2 mt-3"
                         data-bs-toggle="modal">Edit information</button></a>
 
-
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true" th:if="${otel!=null}">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <form th:action="@{'/delete-hotel'}" method="post">
                             <input type="hidden" name="id" th:value="${otel.id}">
                             <div class="modal-header bg-info">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: white;
-">Confirm delete</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: white;">Confirm delete</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -154,6 +155,34 @@
             <img th:src="@{'/images/2.jpg'}" class="img-thumbnail" alt="..."style="width: 100%;height: 70%;margin-top: 15px">
         </div>
     </div>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#commenty">
+        LEAVE REVIEW
+    </button>
+
+    <!-- Modal -->
+        <form th:action="@{'/add-comment'}" method="post">
+            <input type="hidden" name="hotel.id" th:each="ht:${hotel}" th:value="${ht.id}">
+                <div class="modal fade" id="commenty" tabindex="-1" aria-labelledby="cm" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="cm">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <textarea class="form-control" name="text"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </form>
+</div>
+</div>
+</div>
 </div>
 </body>
 </html>

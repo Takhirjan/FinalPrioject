@@ -2,19 +2,16 @@ package bitlab.finalproject.StayHub.Controller;
 import bitlab.finalproject.StayHub.Model.*;
 import bitlab.finalproject.StayHub.Repository.ApartmentsRepository;
 import bitlab.finalproject.StayHub.Repository.HotelRepository;
-import bitlab.finalproject.StayHub.Repository.ServiceRepository;
-import bitlab.finalproject.StayHub.Service.AparmtentsService;
+import bitlab.finalproject.StayHub.Service.CommentService;
 import bitlab.finalproject.StayHub.Service.HotelService;
 import bitlab.finalproject.StayHub.Service.UserService;
-import bitlab.finalproject.StayHub.Service.VillaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -23,15 +20,14 @@ import java.util.List;
 public class HomeController {
   private final UserService userService;
   private final HotelService hotelService;
-  private final VillaService villaService;
   private final ApartmentsRepository apartmentsRepository;
   private final HotelRepository hotelRepository;
+  private final CommentService commentService;
 
   @GetMapping(value = "/hotels/{hotelId}")
   public String getHotelsPage(@PathVariable(name = "hotelId")Long id, Model model){
     Hotels hotels= hotelService.getHotelById(id);
     model.addAttribute("hotel", hotels);
-    Villa villa=villaService.getVillaById(id);
     List<Hotels> hotelsList=hotelRepository.findAll();
     model.addAttribute("hotels",hotelsList);
     return "hotels";
@@ -48,9 +44,7 @@ public class HomeController {
     model.addAttribute("apartments",apartaments);
 
     int hotelCount=hotelService.getHotelCount();
-    int villaCount=villaService.getVillaCount();
     model.addAttribute("hotelCount",hotelCount);
-    model.addAttribute("villaCount",villaCount);
 
 
     return "MainPage";
@@ -105,7 +99,17 @@ public class HomeController {
     return "access-denied-page-403";
   }
 
+  @PostMapping(value = "/add-comment")
+  public String addComment(@ModelAttribute Comment comment, @RequestParam("hotel.id") Long hotelId) {
+    Hotels hotel = hotelService.getHotelById(hotelId);
+    comment.setHotel(hotel);
+    comment.setDateTime(LocalDateTime.now()); // Устанавливаем текущую дату и время
+    commentService.addComment(comment);
 
-
-
+    return "redirect:/details/"+hotelId;
+  }
+  @GetMapping(value = "/addComment")
+  public String addCommentPage( Model model){
+    return "details";
+  }
 }

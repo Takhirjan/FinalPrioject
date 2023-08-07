@@ -1,5 +1,6 @@
 package bitlab.finalproject.StayHub.Repository;
 
+import bitlab.finalproject.StayHub.Model.Comment;
 import bitlab.finalproject.StayHub.Model.Hotels;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,5 +12,4 @@ import java.util.List;
 @Transactional
 public interface HotelRepository extends JpaRepository<Hotels,Long> {
 List<Hotels> findAll();
-
 }

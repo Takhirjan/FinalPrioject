@@ -45,4 +45,5 @@ public class HotelService {
     return hotelRepository.save(hotels);
   }
 
+
   }

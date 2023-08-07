@@ -32,6 +32,7 @@ public class AdminController {
   }
   @GetMapping(value = "/details/{hotelId}")
   public String hotelsDetails(@PathVariable(name = "hotelId")Long id, Model model){
+
     Hotels hotels=hotelService.getHotelById(id);
     model.addAttribute("otel", hotels);
 

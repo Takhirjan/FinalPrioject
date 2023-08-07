@@ -43,9 +43,9 @@
                                 <small class="text-body-secondary" th:text="${confirmHotel.address}"></small>
                             </div>
                         </li>
-                        <li class="list-group-item lh-sm">
+                        <li class="list-group-item lh-sm" th:each="bk:${book}" name="uslugiModel.id">
                             <h6 class="my-0">Service</h6>
-                            <small class="text-body-secondary" th:each="bk:${book}"
+                            <small class="text-body-secondary"
                                    th:value="${bk.id}"
                                    th:text="${bk.uslugiModel.serviceName}"
                                    ></small>

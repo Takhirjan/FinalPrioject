@@ -4,11 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "t_hotels")
 @Getter
 @Setter
-public class Hotels extends BaseModel{
+public class Hotels extends BaseModel {
   @Column(name = "name")
   private String name;
 
@@ -21,7 +23,7 @@ public class Hotels extends BaseModel{
   @Column(name = "rating")
   private String rating;
 
-  @Column(name = "text",columnDefinition = "TEXT",length = 500)
+  @Column(name = "text", columnDefinition = "TEXT", length = 500)
   private String text;
 
   @Column(name = "city")
@@ -33,9 +35,10 @@ public class Hotels extends BaseModel{
   @Column(name = "address")
   private String address;
 
-
   @ManyToOne
   private Uslugi uslugiModel;
 
+
 }
+
 
