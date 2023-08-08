@@ -23,7 +23,5 @@ public class Comment extends BaseModel{
   @ManyToOne
   private Hotels hotel;
 
-  @ManyToOne
-  private Users users;
 
 }

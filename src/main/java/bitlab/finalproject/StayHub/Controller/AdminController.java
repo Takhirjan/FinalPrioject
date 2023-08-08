@@ -1,10 +1,12 @@
 package bitlab.finalproject.StayHub.Controller;
 import bitlab.finalproject.StayHub.Model.Comment;
 import bitlab.finalproject.StayHub.Model.Hotels;
+import bitlab.finalproject.StayHub.Model.Users;
 import bitlab.finalproject.StayHub.Model.Uslugi;
 import bitlab.finalproject.StayHub.Repository.ServiceRepository;
 import bitlab.finalproject.StayHub.Service.CommentService;
 import bitlab.finalproject.StayHub.Service.HotelService;
+import bitlab.finalproject.StayHub.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,7 @@ public class AdminController {
   private final HotelService hotelService;
   private final ServiceRepository serviceRepository;
   private final CommentService commentService;
+  private final UserService userService;
 
 
   @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
@@ -34,7 +37,8 @@ public class AdminController {
     return "redirect:/";
   }
   @GetMapping(value = "/details/{hotelId}")
-  public String hotelsDetails(@PathVariable(name = "hotelId")Long id, Model model){
+  public String hotelsDetails(@PathVariable(name = "hotelId")Long id,
+                              Users users, Model model){
 
     Hotels hotels=hotelService.getHotelById(id);
     model.addAttribute("otel", hotels);
@@ -47,6 +51,9 @@ public class AdminController {
 
     List<Comment> comments=commentService.getAllComments();
     model.addAttribute("commenty",comments);
+
+    userService.getUserByID(id);
+    model.addAttribute("users",users);
 
     return "details";
   }

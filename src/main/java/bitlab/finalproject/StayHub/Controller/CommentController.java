@@ -35,15 +35,11 @@ public class CommentController {
  */
 @PreAuthorize("isAuthenticated()")
 @PostMapping(value = "/add-comment")
-  public String addComment(@ModelAttribute Comment comment,Model model,
+  public String addComment(@ModelAttribute Comment comment,
                            @RequestParam("hotel.id") Long hotelId,
-                           @RequestParam("user_id")Long user_id) {
+                            @RequestParam("user_id")Long userId){
 
   Hotels hotel = hotelService.getHotelById(hotelId);
-//  Users users= (Users) userService.getUser();
-   Users users= userService.getUserByID(user_id);
-   model.addAttribute("user",users);
-  comment.setUsers(users);
   comment.setHotel(hotel);
   comment.setDateTime(LocalDateTime.now()); // Устанавливаем текущую дату и время
   commentService.addComment(comment);
