@@ -1,7 +1,9 @@
 package bitlab.finalproject.StayHub.Controller;
+import bitlab.finalproject.StayHub.Model.Comment;
 import bitlab.finalproject.StayHub.Model.Hotels;
 import bitlab.finalproject.StayHub.Model.Uslugi;
 import bitlab.finalproject.StayHub.Repository.ServiceRepository;
+import bitlab.finalproject.StayHub.Service.CommentService;
 import bitlab.finalproject.StayHub.Service.HotelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,6 +19,7 @@ import java.util.List;
 public class AdminController {
   private final HotelService hotelService;
   private final ServiceRepository serviceRepository;
+  private final CommentService commentService;
 
 
   @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
@@ -41,6 +44,9 @@ public class AdminController {
 
     List<Uslugi> services=serviceRepository.findAll();
     model.addAttribute("service",services);
+
+    List<Comment> comments=commentService.getAllComments();
+    model.addAttribute("commenty",comments);
 
     return "details";
   }

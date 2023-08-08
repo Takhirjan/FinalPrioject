@@ -22,7 +22,6 @@ public class BookingController {
   private final UslugiService uslugiService;
 
   @PreAuthorize("isAuthenticated()")
-
   @PostMapping(value = "/confirm/{confirmId}")
   public String confirmBooking(@PathVariable(name = "confirmId") Long id,Booking booking, Model model){
     bookingService.save(booking);

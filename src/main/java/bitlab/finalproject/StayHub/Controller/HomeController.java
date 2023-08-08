@@ -22,29 +22,28 @@ public class HomeController {
   private final HotelService hotelService;
   private final ApartmentsRepository apartmentsRepository;
   private final HotelRepository hotelRepository;
-  private final CommentService commentService;
 
   @GetMapping(value = "/hotels/{hotelId}")
-  public String getHotelsPage(@PathVariable(name = "hotelId")Long id, Model model){
-    Hotels hotels= hotelService.getHotelById(id);
+  public String getHotelsPage(@PathVariable(name = "hotelId") Long id, Model model) {
+    Hotels hotels = hotelService.getHotelById(id);
     model.addAttribute("hotel", hotels);
-    List<Hotels> hotelsList=hotelRepository.findAll();
-    model.addAttribute("hotels",hotelsList);
+    List<Hotels> hotelsList = hotelRepository.findAll();
+    model.addAttribute("hotels", hotelsList);
     return "hotels";
   }
 
   @GetMapping(value = "/sign-in-page")
-  public String mainPage(){
+  public String mainPage() {
     return "sign-in-page";
   }
 
   @GetMapping(value = "/")
-  public String MainPage( Model model){
-    List<Apartaments> apartaments=apartmentsRepository.findAll();
-    model.addAttribute("apartments",apartaments);
+  public String MainPage(Model model) {
+    List<Apartaments> apartaments = apartmentsRepository.findAll();
+    model.addAttribute("apartments", apartaments);
 
-    int hotelCount=hotelService.getHotelCount();
-    model.addAttribute("hotelCount",hotelCount);
+    int hotelCount = hotelService.getHotelCount();
+    model.addAttribute("hotelCount", hotelCount);
 
 
     return "MainPage";
@@ -89,27 +88,17 @@ public class HomeController {
       return "redirect:/update-password-page?passwordmismatch";
     }
   }
+
   @PreAuthorize("isAuthenticated()")
   @GetMapping(value = "/update-password-page")
-  public String updatePage(){
+  public String updatePage() {
     return "update-password";
   }
+
   @GetMapping(value = "/403-page")
   public String accessDenied() {
     return "access-denied-page-403";
   }
-
-  @PostMapping(value = "/add-comment")
-  public String addComment(@ModelAttribute Comment comment, @RequestParam("hotel.id") Long hotelId) {
-    Hotels hotel = hotelService.getHotelById(hotelId);
-    comment.setHotel(hotel);
-    comment.setDateTime(LocalDateTime.now()); // Устанавливаем текущую дату и время
-    commentService.addComment(comment);
-
-    return "redirect:/details/"+hotelId;
-  }
-  @GetMapping(value = "/addComment")
-  public String addCommentPage( Model model){
-    return "details";
-  }
 }
+
+

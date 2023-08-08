@@ -19,14 +19,7 @@ public class CommentService {
   public void addComment(Comment comment){
     commentRepository.save(comment);
  }
-// public List<Comment> getCommentByUser_id(Long user_id){
-//   return commentRepository.findAllByUser(user_id);
-// }
-// public List<Comment> getCommentByHotel_id(Long hotel_id){
-//   return commentRepository .findAllByHotelId(hotel_id);
-// }
-
-//  public List<Comment> getCommentsForHotel(Long hotelId) {
-//    return commentRepository.findByHotelId(hotelId);
-//  }
+  public List<Comment> getAllComments(){
+    return commentRepository.findAll();
+  }
 }
