@@ -30,6 +30,11 @@ public class AdminController {
   public String adminPanel(Model model){
     return "admin";
   }
+  @PreAuthorize("hasAnyRole('ROLE_USER')")
+  @GetMapping(value = "/successfully")
+  public String SuccessPage(Model model){
+    return "ready";
+  }
   @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
   @PostMapping(value = "/add-hotel")
   public String addHotel( Hotels hotels) {

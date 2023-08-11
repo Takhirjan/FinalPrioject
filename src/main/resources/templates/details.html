@@ -159,8 +159,8 @@
             <img th:src="@{'/images/2.jpg'}" class="img-thumbnail" alt="..."style="width: 100%;height: 70%;margin-top: 15px">
         </div>
     </div>
-            <div class="text2">
-                <h2 style="font-size: 16px;margin-left: 11px;">Что гостям понравилось:</h2></div>
+    <div class="text2">
+        <h2 style="font-size: 16px;margin-left: 11px;">Что гостям понравилось:</h2></div>
     <div class="album py-5 bg-body-tertiary">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" style="margin-top: -25px">
@@ -168,41 +168,39 @@
                     <div class="card shadow-sm" style=" height: 170px">
                         <div class="card-body">
                             <p class="card-text" style="font-size:13px" th:text="${cm.text}"></p>
-                                <small class="text-body-secondary" th:text="${cm.dateTime}"></small>
-                            </div>
+                            <small class="text-body-secondary" th:text="${cm.dateTime}"></small>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
             data-bs-target="#comments" sec:authorize="hasAnyRole('ROLE_USER')">
         LEAVE REVIEW
     </button>
-        <form th:action="@{'/add-comment'}" method="post">
+    <form th:action="@{'/add-comment'}" method="post">
         <input type="hidden" name="hotel.id" th:each="ht:${hotel}" th:value="${ht.id}">
-    <div class="modal fade" id="comments" tabindex="-1" aria-labelledby="cm" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="cm">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <textarea class="form-control" name="text"></textarea>
+        <div class="modal fade" id="comments" tabindex="-1" aria-labelledby="cm" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="cm">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <textarea class="form-control" name="text"></textarea>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </form>
-    </div>
+</div>
 </div>
 </body>
 </html>

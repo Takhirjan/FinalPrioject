@@ -36,8 +36,7 @@ public class CommentController {
 @PreAuthorize("isAuthenticated()")
 @PostMapping(value = "/add-comment")
   public String addComment(@ModelAttribute Comment comment,
-                           @RequestParam("hotel.id") Long hotelId,
-                            @RequestParam("user_id")Long userId){
+                           @RequestParam("hotel.id") Long hotelId){
 
   Hotels hotel = hotelService.getHotelById(hotelId);
   comment.setHotel(hotel);
