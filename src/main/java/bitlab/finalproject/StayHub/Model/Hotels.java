@@ -29,14 +29,9 @@ public class Hotels extends BaseModel {
   @Column(name = "city")
   private String city;
 
-  @Column(name = "image")
-  private String image;
-
   @Column(name = "address")
   private String address;
 
-  @ManyToOne
-  private Uslugi uslugiModel;
 
 
 }
