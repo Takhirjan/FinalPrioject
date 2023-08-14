@@ -23,4 +23,10 @@ public class CommentService {
 public Comment getComment(Long id){
     return commentRepository.findById(id).orElse(null);
 }
+public Comment updateComment(Comment comment){
+    return commentRepository.save(comment);
+}
+public void deleteComment(Long id){
+commentRepository.deleteById(id);
+}
 }
