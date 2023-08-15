@@ -69,6 +69,10 @@ public class UserService implements UserDetailsService {
     return userRepository.findById(id).orElse(null);
   }
 
+
+  public Users deleteUser(Long id){
+    userRepository.deleteById(id);
+  }
 }
 
 
