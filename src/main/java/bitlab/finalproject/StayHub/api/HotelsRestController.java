@@ -1,5 +1,6 @@
 package bitlab.finalproject.StayHub.api;
 
+import bitlab.finalproject.StayHub.DTO.HotelDTO;
 import bitlab.finalproject.StayHub.Model.Comment;
 import bitlab.finalproject.StayHub.Model.Hotels;
 import bitlab.finalproject.StayHub.Service.CommentService;
@@ -16,19 +17,19 @@ public class HotelsRestController {
   private final HotelService hotelService;
 
   @GetMapping
-  public List<Hotels> commentList(){
+  public List<HotelDTO> commentList(){
     return hotelService.getHotels();
   }
   @GetMapping(value = "{id}")
-  public Hotels getHotel(@PathVariable(name="id") Long id){
+  public HotelDTO getHotel(@PathVariable(name="id") Long id){
     return hotelService.getHotelById(id);
   }
   @PostMapping
-  public Hotels addHotel(@RequestBody Hotels hotels){
+  public HotelDTO addHotel(@RequestBody HotelDTO hotels){
     return hotelService.addHotel(hotels);
   }
   @PutMapping
-  public Hotels updateHotel(@RequestBody Hotels hotels){
+  public HotelDTO updateHotel(@RequestBody HotelDTO hotels){
     return hotelService.updateHotel(hotels);
   }
   @DeleteMapping(value = "{id}")

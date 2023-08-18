@@ -1,5 +1,6 @@
 package bitlab.finalproject.StayHub.api;
 
+import bitlab.finalproject.StayHub.DTO.HotelDTO;
 import bitlab.finalproject.StayHub.Model.Comment;
 import bitlab.finalproject.StayHub.Model.Hotels;
 import bitlab.finalproject.StayHub.Service.CommentService;
@@ -17,7 +18,7 @@ public class HotelsModifyController {
 private final HotelService hotelService;
 
 @PostMapping(value = "/hotel")
-  public Hotels addHotel(@RequestBody Hotels hotels) {
+  public HotelDTO addHotel(@RequestBody HotelDTO hotels) {
    return hotelService.addHotel(hotels);
   }
 }

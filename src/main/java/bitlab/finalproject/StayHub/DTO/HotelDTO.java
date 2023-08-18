@@ -1,12 +1,14 @@
 package bitlab.finalproject.StayHub.DTO;
 
+import bitlab.finalproject.StayHub.Model.Hotels;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class HotelDTO {
-  private String name;
+public class HotelDTO extends Hotels {
+  private Long id;
+  private String title;
   private String description;
   private String price;
   private String rating;

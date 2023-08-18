@@ -1,4 +1,5 @@
 package bitlab.finalproject.StayHub.Controller;
+import bitlab.finalproject.StayHub.DTO.HotelDTO;
 import bitlab.finalproject.StayHub.Model.*;
 import bitlab.finalproject.StayHub.Repository.ApartmentsRepository;
 import bitlab.finalproject.StayHub.Repository.HotelRepository;
@@ -25,7 +26,7 @@ public class HomeController {
 
   @GetMapping(value = "/hotels/{hotelId}")
   public String getHotelsPage(@PathVariable(name = "hotelId") Long id, Model model) {
-    Hotels hotels = hotelService.getHotelById(id);
+    HotelDTO hotels = hotelService.getHotelById(id);
     model.addAttribute("hotel", hotels);
     List<Hotels> hotelsList = hotelRepository.findAll();
     model.addAttribute("hotels", hotelsList);

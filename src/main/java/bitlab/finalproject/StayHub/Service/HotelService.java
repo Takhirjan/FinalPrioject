@@ -1,5 +1,7 @@
 package bitlab.finalproject.StayHub.Service;
 
+import bitlab.finalproject.StayHub.DTO.HotelDTO;
+import bitlab.finalproject.StayHub.Mapper.HotelMapper;
 import bitlab.finalproject.StayHub.Model.Booking;
 import bitlab.finalproject.StayHub.Model.Hotels;
 import bitlab.finalproject.StayHub.Repository.BookingRepository;
@@ -15,15 +17,13 @@ import java.util.List;
 public class HotelService {
   private final HotelRepository hotelRepository;
   private final BookingRepository bookingRepository;
-  private final ServiceRepository serviceRepository;
+  private final HotelMapper hotelMapper;
 
-  public List<Hotels> getHotels(){
-  return hotelRepository.findAll();
+  public List<HotelDTO> getHotels(){
+  return hotelMapper.toDtoList(hotelRepository.findAll());
 }
-
-
-  public Hotels getHotelById(Long id){
-    return hotelRepository.findById(id).orElse(null);
+  public HotelDTO getHotelById(Long id){
+    return hotelMapper.toDTo(hotelRepository.findById(id).orElse(null));
   }
 
   public Booking getBookingById(Long id){
@@ -34,8 +34,8 @@ public class HotelService {
     List<Hotels> hotels=hotelRepository.findAll();
     return hotels.size();
   }
-  public Hotels addHotel(Hotels newHotel){
-    return hotelRepository.save(newHotel);
+  public HotelDTO addHotel(HotelDTO newHotel){
+    return hotelMapper.toDTo(hotelRepository.save(hotelMapper.toModel(newHotel)));
   }
 
   public void deleteHotel(Long id){
@@ -45,8 +45,8 @@ public class HotelService {
     return hotelRepository.save(hotels);
   }
 
-  public Hotels updateHotel(Hotels hotels){
-    return hotelRepository.save(hotels);
+  public HotelDTO updateHotel(HotelDTO hotels){
+    return hotelMapper.toDTo(hotelRepository.save(hotelMapper.toModel(hotels)));
   }
 
   }

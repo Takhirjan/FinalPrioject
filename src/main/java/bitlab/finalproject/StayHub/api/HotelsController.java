@@ -1,7 +1,10 @@
 package bitlab.finalproject.StayHub.api;
 
+import bitlab.finalproject.StayHub.DTO.HotelDTO;
 import bitlab.finalproject.StayHub.Model.Comment;
+import bitlab.finalproject.StayHub.Model.Hotels;
 import bitlab.finalproject.StayHub.Service.CommentService;
+import bitlab.finalproject.StayHub.Service.HotelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,13 +14,13 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/hotel")
 public class HotelsController {
-  private final CommentService commentService;
+  private final HotelService hotelService;
   @GetMapping(value = "/get-all-hotels")
-  public List<Comment> getComment(){
-    return commentService.getAllComments();
+  public List<HotelDTO> getComment(){
+    return hotelService.getHotels();
   }
   @PostMapping(value = "/add-hotel")
-  public Comment addComment(@RequestBody Comment comment) {
-    return commentService.addComment(comment);
+  public HotelDTO addComment(@RequestBody HotelDTO hotels) {
+    return hotelService.addHotel(hotels);
   }
 }

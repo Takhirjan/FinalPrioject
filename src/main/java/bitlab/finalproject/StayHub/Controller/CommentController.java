@@ -1,5 +1,6 @@
 package bitlab.finalproject.StayHub.Controller;
 
+import bitlab.finalproject.StayHub.DTO.HotelDTO;
 import bitlab.finalproject.StayHub.Model.Comment;
 import bitlab.finalproject.StayHub.Model.Hotels;
 import bitlab.finalproject.StayHub.Model.Users;
@@ -38,7 +39,7 @@ public class CommentController {
   public String addComment(@ModelAttribute Comment comment,
                            @RequestParam("hotel.id") Long hotelId){
 
-  Hotels hotel = hotelService.getHotelById(hotelId);
+  HotelDTO hotel = hotelService.getHotelById(hotelId);
   comment.setHotel(hotel);
   comment.setDateTime(LocalDateTime.now()); // Устанавливаем текущую дату и время
   commentService.addComment(comment);

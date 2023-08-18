@@ -1,4 +1,5 @@
 package bitlab.finalproject.StayHub.Controller;
+import bitlab.finalproject.StayHub.DTO.HotelDTO;
 import bitlab.finalproject.StayHub.Model.Booking;
 import bitlab.finalproject.StayHub.Model.Hotels;
 import bitlab.finalproject.StayHub.Model.Uslugi;
@@ -33,7 +34,7 @@ public class BookingController {
     List<Booking> bookingList=bookingService.getBook();
     model.addAttribute("book", bookingList);
 
-   Hotels hotels=hotelService.getHotelById(id);
+   HotelDTO hotels=hotelService.getHotelById(id);
    model.addAttribute("confirmHotel",hotels);
 
     return "ConfirmationPage";

@@ -1,4 +1,5 @@
 package bitlab.finalproject.StayHub.Controller;
+import bitlab.finalproject.StayHub.DTO.HotelDTO;
 import bitlab.finalproject.StayHub.Model.Comment;
 import bitlab.finalproject.StayHub.Model.Hotels;
 import bitlab.finalproject.StayHub.Model.Users;
@@ -37,7 +38,7 @@ public class AdminController {
   }
   @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
   @PostMapping(value = "/add-hotel")
-  public String addHotel( Hotels hotels) {
+  public String addHotel( HotelDTO hotels) {
     hotelService.addHotel(hotels);
     return "redirect:/";
   }
@@ -45,10 +46,10 @@ public class AdminController {
   public String hotelsDetails(@PathVariable(name = "hotelId")Long id,
                               Users users, Model model){
 
-    Hotels hotels=hotelService.getHotelById(id);
+    HotelDTO hotels=hotelService.getHotelById(id);
     model.addAttribute("otel", hotels);
 
-    List<Hotels> hotelsList=hotelService.getHotels();
+    List<HotelDTO> hotelsList=hotelService.getHotels();
     model.addAttribute("hotel",hotelsList);
 
     List<Uslugi> services=serviceRepository.findAll();
