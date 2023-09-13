@@ -6,7 +6,6 @@ import bitlab.finalproject.StayHub.Model.Booking;
 import bitlab.finalproject.StayHub.Model.Hotels;
 import bitlab.finalproject.StayHub.Repository.BookingRepository;
 import bitlab.finalproject.StayHub.Repository.HotelRepository;
-import bitlab.finalproject.StayHub.Repository.ServiceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -84,7 +84,7 @@ public class AdminController {
   @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
   @GetMapping(value = "/editHotel/{id}")
   public String EditPage(@PathVariable(name = "id")Long id,Model model){
-    Hotels hotels=hotelService.getHotelById(id);
+    HotelDTO hotels=hotelService.getHotelById(id);
     model.addAttribute("otel",hotels);
     return "EditPage";
   }

@@ -6,9 +6,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class HotelDTO extends Hotels {
+public class HotelDTO{
   private Long id;
-  private String title;
+  private String hotelName;
   private String description;
   private String price;
   private String rating;
@@ -16,4 +16,7 @@ public class HotelDTO extends Hotels {
   private String city;
   private String address;
   //упаковка дял фронта
+
+  // Если фронтендер говорит давай изменим target in CourseMapper то мы берем и изменям его в CourseDTO а там у же все что
+// горит красным изменяем
 }
