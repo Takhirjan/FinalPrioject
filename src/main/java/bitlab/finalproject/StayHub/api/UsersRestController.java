@@ -1,5 +1,6 @@
 package bitlab.finalproject.StayHub.api;
 
+import bitlab.finalproject.StayHub.DTO.UsersDTO;
 import bitlab.finalproject.StayHub.Model.Hotels;
 import bitlab.finalproject.StayHub.Model.Users;
 import bitlab.finalproject.StayHub.Service.HotelService;
@@ -16,19 +17,19 @@ public class UsersRestController {
   private final UserService userService;
 
   @GetMapping
-  public List<Users> users(){
+  public List<UsersDTO> users(){
     return userService.getUser();
   }
   @GetMapping(value = "{id}")
-  public Users getUser(@PathVariable(name="id") Long id){
+  public UsersDTO getUser(@PathVariable(name="id") Long id){
     return userService.getUserByID(id);
   }
   @PostMapping
-  public Users addHotel(@RequestBody Users users){
+  public UsersDTO addHotel(@RequestBody UsersDTO users){
     return userService.addUser(users);
   }
   @PutMapping
-  public Users updateHotel(@RequestBody Users users){
+  public UsersDTO updateHotel(@RequestBody UsersDTO users){
     return userService.updateUser(users);
   }
   @DeleteMapping(value = "{id}")

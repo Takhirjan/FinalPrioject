@@ -1,5 +1,6 @@
 package bitlab.finalproject.StayHub.api;
 
+import bitlab.finalproject.StayHub.DTO.UsersDTO;
 import bitlab.finalproject.StayHub.Model.Comment;
 import bitlab.finalproject.StayHub.Model.Users;
 import bitlab.finalproject.StayHub.Service.CommentService;
@@ -16,11 +17,11 @@ import java.util.List;
 public class UsersController {
   private final UserService userService;
   @GetMapping(value = "/get-all-users")
-  public List<Users> getUser(){
+  public List<UsersDTO> getUser(){
     return userService.getUser();
   }
   @PostMapping(value = "/add-user")
-  public Users addUser(@RequestBody Users users) {
+  public UsersDTO addUser(@RequestBody UsersDTO users) {
     return userService.addUser(users);
   }
   @DeleteMapping(value = "{id}")
@@ -28,7 +29,7 @@ public class UsersController {
     userService.deleteUser(id);
   }
   @PutMapping
-  public Users updateUser(@RequestBody Users users){
+  public UsersDTO updateUser(@RequestBody UsersDTO users){
     return userService.updateUser(users);
   }
 }

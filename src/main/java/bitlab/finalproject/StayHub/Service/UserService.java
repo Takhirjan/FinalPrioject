@@ -1,5 +1,7 @@
 package bitlab.finalproject.StayHub.Service;
 
+import bitlab.finalproject.StayHub.DTO.UsersDTO;
+import bitlab.finalproject.StayHub.Mapper.UsersMapper;
 import bitlab.finalproject.StayHub.Model.Hotels;
 import bitlab.finalproject.StayHub.Model.Users;
 import bitlab.finalproject.StayHub.Repository.UserRepository;
@@ -17,7 +19,8 @@ import java.util.List;
 
 
 public class UserService implements UserDetailsService {
-
+  @Autowired
+  private UsersMapper usersMapper;
   @Autowired
   private UserRepository userRepository;
 
@@ -35,19 +38,19 @@ public class UserService implements UserDetailsService {
       throw  new UsernameNotFoundException("User Not Found");
     }
   }
-  public Users addUser(Users users){
-    Users newUser=userRepository.findByEmail(users.getEmail());
+  public UsersDTO addUser(UsersDTO users){
+    UsersDTO newUser=usersMapper.toDTo(userRepository.findByEmail(users.getMail()));
     if(newUser==null){  //he is checking if current email is available
       users.setPassword(passwordEncoder.encode(users.getPassword())); // щн превращает его парольв Bcrypt
-      return userRepository.save(users);
+      return usersMapper.toDTo(userRepository.save(usersMapper.toModel(users)));
     }
     return null;
   }
-  public Users updatePassword(String newPassword, String oldPassword) {
+  public UsersDTO updatePassword(String newPassword, String oldPassword) {
     Users currentUser = getCurrentSessionUser();
     if(passwordEncoder.matches(oldPassword, currentUser.getPassword())){
       currentUser.setPassword(passwordEncoder.encode(newPassword));
-      return userRepository.save(currentUser);
+      return usersMapper.toDTo(userRepository.save(currentUser));
     }
     return null;
   }
@@ -62,19 +65,26 @@ public class UserService implements UserDetailsService {
     }
     return null;
   }
-  public List<Users> getUser(){
-    return userRepository.findAll();
+  public List<UsersDTO> getUser(){
+    return usersMapper.toDtoList(userRepository.findAll());
   }
-  public Users getUserByID(Long id){
-    return userRepository.findById(id).orElse(null);
+  public UsersDTO getUserByID(Long id){
+    return usersMapper.toDTo(userRepository.findById(id).orElse(null));
   }
 
 
   public void deleteUser(Long id){
     userRepository.deleteById(id);
   }
-  public Users updateUser(Users users){
-    return userRepository.save(users);
+  public UsersDTO updateUser(UsersDTO users){
+    return usersMapper.toDTo(userRepository.save(usersMapper.toModel(users)));
+
+    /* Он принимает данные в виде UsersDTO, преобразует их в объект Users,
+     сохраняет обновленные данные в репозитории и затем, возможно, возвращает
+     обновленные данные в виде UsersDTO. Это обеспечивает абстракцию между слоем
+    обслуживания (сервисом) и слоем доступа к данным, а
+    также обеспечивает возможность управления данными о
+    пользователях в вашем приложении.*/
   }
 }
 

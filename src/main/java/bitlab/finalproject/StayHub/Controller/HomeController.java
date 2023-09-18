@@ -1,5 +1,6 @@
 package bitlab.finalproject.StayHub.Controller;
 import bitlab.finalproject.StayHub.DTO.HotelDTO;
+import bitlab.finalproject.StayHub.DTO.UsersDTO;
 import bitlab.finalproject.StayHub.Model.*;
 import bitlab.finalproject.StayHub.Repository.ApartmentsRepository;
 import bitlab.finalproject.StayHub.Repository.HotelRepository;
@@ -56,11 +57,11 @@ public class HomeController {
                          @RequestParam(name = "user_repeat_password") String repeatPassword,
                          @RequestParam(name = "user_full_name") String fullName) {
     if (password.equals(repeatPassword)) {
-      Users user = new Users();
-      user.setEmail(email);
+      UsersDTO user = new UsersDTO();
+      user.setMail(email);
       user.setFullName(fullName);
       user.setPassword(password);
-      Users newUser = userService.addUser(user);
+      UsersDTO newUser = userService.addUser(user);
       if (newUser != null) {
         return "redirect:/sign-in-page?success";
       } else {
@@ -78,7 +79,7 @@ public class HomeController {
       @RequestParam(name = "user_repeat_new_password") String repeatNewPassword) {
 
     if (newPassword.equals(repeatNewPassword)) {
-      Users users = userService.updatePassword(newPassword, oldPassword);
+      UsersDTO users = userService.updatePassword(newPassword, oldPassword);
       if (users != null) {
         return "redirect:/update-password-page?success";
       } else {

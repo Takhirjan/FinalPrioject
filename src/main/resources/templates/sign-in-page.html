@@ -42,7 +42,7 @@
 		<form method="post" th:action = "@{'/to-sign-up'}">
 			<h1>Sign Up</h1>
 			<div class="social-container">
-				<a href="#" class="fa fa-facebook"></a>
+				<a th:href="@{/oauth2/authorization/github}" class="fa fa-facebook"></a>
 				<a href="#" class="fa fa-twitter"></a>
 			</div>
 			<input type="text" placeholder="Name" name="user_full_name"/>

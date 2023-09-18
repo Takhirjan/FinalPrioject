@@ -1,5 +1,6 @@
 package bitlab.finalproject.StayHub.Controller;
 import bitlab.finalproject.StayHub.DTO.HotelDTO;
+import bitlab.finalproject.StayHub.DTO.UsersDTO;
 import bitlab.finalproject.StayHub.Model.Comment;
 import bitlab.finalproject.StayHub.Model.Hotels;
 import bitlab.finalproject.StayHub.Model.Users;
@@ -44,7 +45,7 @@ public class AdminController {
   }
   @GetMapping(value = "/details/{hotelId}")
   public String hotelsDetails(@PathVariable(name = "hotelId")Long id,
-                              Users users, Model model){
+                              UsersDTO users, Model model){
 
     HotelDTO hotels=hotelService.getHotelById(id);
     model.addAttribute("otel", hotels);
