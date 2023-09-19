@@ -72,7 +72,7 @@ public class AdminController {
   }
   @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
   @PostMapping(value = "/edit-hotel-data")
-  public String saveHotel(Hotels hotels) {
+  public String saveHotel(HotelDTO hotels) {
     hotelService.saveHotel(hotels);
     return "redirect:/details/" + hotels.getId();
   }

@@ -40,12 +40,12 @@ public class HotelService {
   public void deleteHotel(Long id){
   hotelRepository.deleteById(id);
   }
-  public  Hotels saveHotel(Hotels hotels){
-    return hotelRepository.save(hotels);
-  }
-
-  public HotelDTO updateHotel(HotelDTO hotels){
+  public  HotelDTO saveHotel(HotelDTO hotels){
     return hotelMapper.toDTo(hotelRepository.save(hotelMapper.toModel(hotels)));
   }
 
-  }
+    public HotelDTO updateHotel(HotelDTO hotels){
+      return hotelMapper.toDTo(hotelRepository.save(hotelMapper.toModel(hotels)));
+    }
+
+}
