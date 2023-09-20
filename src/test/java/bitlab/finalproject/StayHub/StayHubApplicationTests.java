@@ -106,3 +106,5 @@ class StayHubApplicationTests {
 }
 
 /*Unit test это проверка каждого метода */
+
+/*Migration нужны для того чтобы выстраивать базу заранее*/
