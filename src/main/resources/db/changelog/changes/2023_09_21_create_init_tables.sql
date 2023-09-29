@@ -1,10 +1,15 @@
-create table t_permission(
+CREATE TABLE t_permission(
     id bigint auto_increment,
     role varchar(255),
     primary key (id)
 );
+CREATE TABLE t_apartaments(
+                              id bigint auto_increment,
+                              title varchar(255),
+                              primary key (id)
+);
 
-create table t_users(
+CREATE TABLE t_users(
     id bigint auto_increment,
     email varchar(255),
     full_name varchar(255),
@@ -12,7 +17,7 @@ create table t_users(
     primary key (id)
 );
 
-create table t_users_permissions(
+CREATE TABLE t_users_permissions(
     user_id bigint,
     permission_id bigint
 );
@@ -30,21 +35,14 @@ ALTER TABLE t_users_permissions
                 ON DELETE CASCADE;
 
 
- create table t_apartaments(
-  id bigint auto_increment,
-  title varchar(255),
-  primary key (id)
- );
-
-
-create table t_service(
+CREATE TABLE t_service(
 id bigint auto_increment,
 service_name varchar(255),
 has_options boolean,
 primary key (id)
 );
 
-create table t_bookings(
+CREATE TABLE t_bookings(
    id bigint auto_increment,
    time datetime,
    uslugi_model_id bigint,
@@ -52,7 +50,7 @@ create table t_bookings(
    foreign key (uslugi_model_id) references t_service(id)
 );
 
-create table t_hotels(
+CREATE TABLE t_hotels(
  id bigint auto_increment,
  description varchar(255),
  name varchar(255),
@@ -64,7 +62,7 @@ create table t_hotels(
  primary key (id)
 );
 
-create table t_comments(
+CREATE TABLE t_comments(
     id bigint auto_increment,
     comment varchar(255),
     post_date datetime,
@@ -73,7 +71,7 @@ create table t_comments(
     foreign key (hotel_id) references t_hotels(id)
 );
 
-create table t_villa(
+CREATE TABLE t_villa(
     id bigint auto_increment,
     description varchar(255),
     name varchar(255),

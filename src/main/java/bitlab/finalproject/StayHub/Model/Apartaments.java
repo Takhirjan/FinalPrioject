@@ -18,6 +18,4 @@ public class Apartaments extends BaseModel{
   private String title;
 
 
-  @Column(name = "image")
-  private  String image;
 }
